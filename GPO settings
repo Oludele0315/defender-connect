@@ -1,0 +1,10 @@
+Quick reference to configuring the proxy using GPO, not system-wide.
+
+GPO: Administrative Templates > Windows Components > Data Collection and Preview Builds > Configure Authenticated Proxy usage for the Connected User Experience and Telemetry Service
+Set to enabled then "Disable Authenticated Proxy usage"
+
+GPO: Administrative Templates > Windows Components > Data Collection and Preview Builds > Configure connected user experiences and telemetry:
+Configure the proxy (http://HOSTNAME_OR_IP:3128)
+
+GPO: Administrative Templates > Windows Components > Windows Defender > Define proxy server for connecting to the network
+Configure the proxy (http://HOSTNAME_OR_IP:3128)
