@@ -1,4 +1,5 @@
-Quick reference to configuring the proxy using GPO, not system-wide.
+Configuring the proxy using GPO
+Please note with below configuration it is not possible to update Defender as Windows does not use below settings to perform Windows Updates. To update Defender, either use a system-wide proxy setting or an update management tool such as WSUS or SCCM.
 
 GPO: Administrative Templates > Windows Components > Data Collection and Preview Builds > Configure Authenticated Proxy usage for the Connected User Experience and Telemetry Service
 Set to enabled then "Disable Authenticated Proxy usage"
@@ -8,3 +9,5 @@ Configure the proxy (http://HOSTNAME_OR_IP:3128)
 
 GPO: Administrative Templates > Windows Components > Windows Defender > Define proxy server for connecting to the network
 Configure the proxy (http://HOSTNAME_OR_IP:3128)
+
+https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/configure-proxy-internet?view=o365-worldwide#configure-the-proxy-server-manually-using-a-registry-based-static-proxy
