@@ -1,0 +1,22 @@
+High-level DIY to build your own
+
+Manual steps
+1. Deploy a Linux machine
+2. Install Squid proxy $sudo apt-get install squid Y
+3. Create a list of allowed destinations (https://github.com/microsoft/defender-connect/blob/main/MDE.destinations)
+4. Create a configuration file squid.conf (https://github.com/microsoft/defender-connect/blob/main/Squid.conf) that restricts traffic to specific set of ports and destinations
+5. Place the squid.conf and MDE.destinations in /etc/squid
+6. Run $sudo squid -k reconfigure
+7. Configure machines to use the proxy (https://github.com/microsoft/defender-connect/blob/main/Configuring%20clients)
+
+Auto updating the destinations file
+1. Create a script that downloads the destinations file for your geo: curl -O https://raw.githubusercontent.com/microsoft/defender-connect/main/MDE.destinations
+   as an example
+2. Place the script somewhere you can remember. Our example script at https://github.com/microsoft/defender-connect/blob/main/update_urls.sh uses /etc/squid 
+You can download using sudo curl -O /etc/squid https://raw.githubusercontent.com/microsoft/defender-connect/main/update_urls.sh
+3. Create a crontab job that will execute the script on a schedule (example does it every day of every week of every month at 0 minutes of the hourse 8,12,16):
+$sudo crontab -e
+Choose your favorite text editor, we chose nano
+Enter: 
+0 8,12,16 * * * /etc/squid/update_urls.sh >> /etc/squid/update_urls.txt
+Save the file (CTRL+X, y then enter)
