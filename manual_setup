@@ -1,17 +1,19 @@
 High-level DIY to build your own
 
 Manual steps
-1. Deploy a Linux machine. This machine should have access to at least the same destinations that will be proxied. Ensure this machine can resolve domain names.
-NOTE: this machine should run a firewall. On Ubuntu, we can enable ufw. Allow the port required for the proxy (default 3128) and if you wish to use remote administration, the SSH port (22)
-2. Install Squid proxy $sudo apt -Y install squid
-3. Create a list of allowed destinations (https://github.com/microsoft/defender-connect/blob/main/MDE.destinations)
-4. Create a configuration file squid.conf (https://github.com/microsoft/defender-connect/blob/main/Squid.conf) that restricts traffic to specific set of ports and destinations
+1. Deploy a Linux machine. This machine should have access to at least the same destinations that will be proxied. Ensure this machine can resolve domain names and can reach the internet.
+NOTE: this machine should run a firewall. On Ubuntu, we can enable ufw. Allow the port required for the proxy (default 3128)
+2. Install Squid proxy 
+$sudo apt -Y install squid
+3. Create a list of allowed destinations (example at https://github.com/microsoft/defender-connect/blob/main/MDE.destinations)
+4. Create a configuration file squid.conf (example at https://github.com/microsoft/defender-connect/blob/main/Squid.conf) that restricts traffic to specific set of ports and destinations
 5. Place the squid.conf and MDE.destinations in /etc/squid
-6. Run $sudo squid -k reconfigure
+6. Reload the configuration 
+$sudo squid -k reconfigure
 7. Configure machines to use the proxy (https://github.com/microsoft/defender-connect/blob/main/Configuring%20clients)
 
-Auto updating the destinations file
-1. Create a script that downloads the destinations file for your geo: 
+Auto updating the destinations file from a/our repository
+1. Create a script that downloads the destinations file (example generic one but you can select he one for your geo): 
 $sudo curl -O https://raw.githubusercontent.com/microsoft/defender-connect/main/MDE.destinations 
 2. Place the script somewhere you can remember. Our example script at https://github.com/microsoft/defender-connect/blob/main/update_urls.sh uses /etc/squid 
 You can download using:
