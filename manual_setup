@@ -2,15 +2,21 @@ High-level DIY to build your own
 
 Manual steps
 1. Deploy a Linux machine. This machine should have access to at least the same destinations that will be proxied. Ensure this machine can resolve domain names and can reach the internet.
+After installation, update & upgrade
+$sudo apt-get update
+$sudo apt-get -y upgrade
 NOTE: this machine should run a firewall. On Ubuntu, we can enable ufw. Allow the port required for the proxy (default 3128)
+$sudo ufw enable
+$sudo ufw allow 3128
 2. Install Squid proxy 
-$sudo apt -Y install squid
+$sudo apt -y install squid
 3. Create a list of allowed destinations (example at https://github.com/microsoft/defender-connect/blob/main/MDE.destinations)
 4. Create a configuration file squid.conf (example at https://github.com/microsoft/defender-connect/blob/main/Squid.conf) that restricts traffic to specific set of ports and destinations
 5. Place the squid.conf and MDE.destinations in /etc/squid
 6. Reload the configuration 
 $sudo squid -k reconfigure
 7. Configure machines to use the proxy (https://github.com/microsoft/defender-connect/blob/main/Configuring%20clients)
+Machines should be uploading telemetry and Defender cloud protection should work. 
 
 Auto updating the destinations file from a/our repository
 1. Create a script that downloads the destinations file (example generic one but you can select he one for your geo): 
@@ -26,8 +32,11 @@ Enter:
 Save the file (CTRL+X, y then enter)
 
 Installing a simple web server on the same machine to serve the wpad.dat to enable Defender updates through Windows Update
-1. Install Apache using $sudo apt -y apache2
-2. Ensure traffic to port 80 is allowed through the host firewall ($sudo ufw allow 'Apache' to allow port 80/http traffic which is all we need to server the wpad.dat)
+1. Install Apache 
+$sudo apt -y apache2
+2. Ensure traffic to port 80 is allowed through the host firewall 
+$sudo ufw allow 'Apache' 
+(This will allow port 80/http traffic which is all we need to server the wpad.dat)
 3. Download the proxy.pac file $sudo curl -o "https://github.com/microsoft/defender-connect/blob/main/updates.pac"
 4. Place the downloaded file in /var/www/html as wpad.dat :
 $sudo updates.pac /var/www/html/wpad.dat
