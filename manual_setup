@@ -24,6 +24,8 @@ $sudo curl -O https://raw.githubusercontent.com/microsoft/defender-connect/main/
 2. Place the script somewhere you can remember. Our example script at https://github.com/microsoft/defender-connect/blob/main/update_urls.sh uses /etc/squid 
 You can download using:
 $sudo curl -O /etc/squid https://raw.githubusercontent.com/microsoft/defender-connect/main/update_urls.sh
+Make it executable:
+$sudo chmod +x /etc/squid/update_urls.sh
 3. Create a crontab job that will execute the script on a schedule (example does it every day of every week of every month at 0 minutes of the hourse 8,12,16):
 $sudo crontab -e
 Choose your favorite text editor, we chose nano
