@@ -1,7 +1,7 @@
 // PAC file to include in overall PAC file for your environment, or to use specifically to download Windows/Defender updates through Defender Connect
 function FindProxyForURL(url, host) {
     // Your proxy server name and port
-    var proxyserver = '192.168.0.55:3128';
+    var proxyserver = '192.168.0.50:3128';
     //
     //  Here's a list of hosts to connect via the PROXY server
     //
