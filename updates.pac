@@ -7,5 +7,5 @@ if (host == "windowsupdate.microsoft.com") ||
 (dnsDomainIs(host, ".update.microsoft.com")) ||
 (dnsDomainIs(host, ".windowsupdate.com")))
 {
-return 'PROXY 192.168.0.55:3128';
+return 'PROXY 192.168.0.10:3128';
 }
