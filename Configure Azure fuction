@@ -1,0 +1,13 @@
+Below are the steps to create Azure functions:
+
+a.	From the Azure portal mean, navigate to “Create a resource”
+b.	A new page will show up, then choose “Compute” -> “Function App”
+c.	On the “Basic” page, select “Resource Group”
+d.	Choose “Next: Hosting”, select: 
+  i.	“Storage account” to created new storage account for the function app
+  ii.	“Plan” to define how resources will be allocated to your function
+e.	Choose “Next: Monitoring”, select:
+  i.	“Application Insights”: It is used to select a region where data will be stored.
+f.	Select “Review +create”
+g.	Choose “Notification” in the upper right corner of the page
+h.	Select “Go to resource” or “Pin to dashboard”
